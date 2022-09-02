@@ -5,8 +5,6 @@
 
 using namespace std;
 
-// int main() {}
-
 // code 
 class book {
     private:
@@ -25,10 +23,6 @@ class book {
         void feeddata();
 };
 
-
-
-
-
 void book::feeddata()	{
 	cin.ignore();
 	cout<<"\nEnter Author Name: ";    cin.getline(author,30);
@@ -37,4 +31,21 @@ void book::feeddata()	{
 	cout<<"Enter Price: ";            cin>>*price;
 	cout<<"Enter Stock Position: ";   cin>>*stock;   
 	
+}
+
+int main()	{
+	book *B[20];
+	int i=0,r,t,choice;
+	char titlebuy[20],authorbuy[20];
+	while(1)	{
+		cout<<"\n\n\t\tINVENTORY MENU"
+		<<"\n1. Add New Book"
+		<<"\n2. Sell Book(s)"
+		<<"\n3. Search For Book"
+		<<"\n4. Edit Details of Book Entry"
+		<<"\n5. Exit"
+		<<"\n\nEnter your Choice: ";
+		cin>>choice;
+
+    }
 }
