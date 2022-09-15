@@ -5,7 +5,7 @@
 
 using namespace std;
 
-// code
+// Define Class
 class book	{
 private:
 	char *author,*title,*publisher;
@@ -24,27 +24,24 @@ public:
 	void showdata();
 	int search(char[],char[]);
 	void buybook();
-	
 };
 
 void book::feeddata()	{
 	cin.ignore();
-	cout<<"\nEnter Author Name: ";      cin.getline(author,20);
+	cout<<"\nEnter Author Name: ";    cin.getline(author,20);
 	cout<<"Enter Title Name: ";       cin.getline(title,20);
 	cout<<"Enter Publisher Name: ";   cin.getline(publisher,20);
 	cout<<"Enter Price: ";            cin>>*price;
-	cout<<"Enter Stock Position: ";   cin>>*stock;   
-	
+	cout<<"Enter Stock on Hand: ";    cin>>*stock;   	
 }
 
 void book::editdata()	{
 	
-	cout<<"\nEnter Author Name: ";      cin.getline(author,20);
+	cout<<"\nEnter Author Name: ";    cin.getline(author,20);
 	cout<<"Enter Title Name: ";       cin.getline(title,20);
 	cout<<"Enter Publisher Name: ";   cin.getline(publisher,20);
 	cout<<"Enter Price: ";            cin>>*price;
-	cout<<"Enter Stock Position: ";   cin>>*stock;   
-	
+	cout<<"Enter Stock on Hand: ";    cin>>*stock;   
 }
 
 void book::showdata()	{
@@ -52,27 +49,24 @@ void book::showdata()	{
 	cout<<"\nTitle Name: "<<title;
 	cout<<"\nPublisher Name: "<<publisher;
 	cout<<"\nPrice: "<<*price;
-	cout<<"\nStock Position: "<<*stock;   
-	
+	cout<<"\nStock on Hand: "<<*stock;   
 }
 
 int book::search(char tbuy[20],char abuy[20] )	{
 	if(strcmp(tbuy,title)==0 && strcmp(abuy,author)==0)
 		return 1;
 	else return 0;
-		
 }
 
 void book::buybook()	{
 	int count;
 	cout<<"\nEnter Number Of Books to buy: ";
 	cin>>count;
-	if(count<=*stock)	{
-		*stock=*stock-count;
-		cout<<"\nBooks Bought Sucessfully";
-		cout<<"\nAmount: Rs. "<<(*price)*count;
-	}
-	else
+		if(count<=*stock)	{
+			*stock=*stock-count;
+			cout<<"\nBooks Bought Sucessfully";
+			cout<<"\nAmount: "<<(*price)*count;
+		} else
 		cout<<"\nRequired Copies not in Stock";
 }
 
@@ -82,22 +76,25 @@ int main()	{
 	char titlebuy[20],authorbuy[20];
 	while(1)	{
 		cout<<"\n\n\t\tMENU"
-		<<"\n1. Entry of New Book"
+		<<"\n1. Enter New Book"
 		<<"\n2. Buy Book"
 		<<"\n3. Search For Book"
-		<<"\n4. Edit Details Of Book"
+		<<"\n4. Edit a Book Entry"
 		<<"\n5. Exit"
-		<<"\n\nEnter your Choice: ";
+		<<"\n\nMake Selection (enter number): ";
 		cin>>choice;
 		
+		// OPTION SELECTION
 		switch(choice)	{
+			// OPTION 1: Enter New Book
 			case 1:	B[i] = new book;
 				B[i]->feeddata();
 				i++;	break;
 				
+			// OPTION 2: Buy Book
 			case 2: cin.ignore();
-				cout<<"\nEnter Title Of Book: "; cin.getline(titlebuy,20);
-				cout<<"Enter Author Of Book: ";  cin.getline(authorbuy,20);
+				cout<<"\nEnter Title of Book: "; cin.getline(titlebuy,20);
+				cout<<"Enter Author of Book: ";  cin.getline(authorbuy,20);
 				for(t=0;t<i;t++)	{
 					if(B[t]->search(titlebuy,authorbuy))	{
 						B[t]->buybook();
@@ -108,13 +105,15 @@ int main()	{
 				cout<<"\nThis Book is Not in Stock";
 				
 				break;
+
+			// OPTION 3: Search for Book
 			case 3: cin.ignore();
 				cout<<"\nEnter Title Of Book: "; cin.getline(titlebuy,20);
 				cout<<"Enter Author Of Book: ";  cin.getline(authorbuy,20);
 				
 				for(t=0;t<i;t++)	{
 					if(B[t]->search(titlebuy,authorbuy))	{
-						cout<<"\nBook Found Successfully";
+						cout<<"\nBook Found!";
 						B[t]->showdata();
 						break;
 					}
@@ -123,13 +122,14 @@ int main()	{
 				cout<<"\nThis Book is Not in Stock";
 				break;
 			
+			// OPTION 4: Edit a Book Entry
 			case 4: cin.ignore();
 				cout<<"\nEnter Title Of Book: "; cin.getline(titlebuy,20);
 				cout<<"Enter Author Of Book: ";  cin.getline(authorbuy,20);
 				
-				for(t=0;t<i;t++)	{
+				for(t=0; t<i; t++)	{
 					if(B[t]->search(titlebuy,authorbuy))	{
-						cout<<"\nBook Found Successfully";
+						cout<<"\nBook Found!";
 						B[t]->editdata();
 						break;
 					}
